@@ -13,21 +13,20 @@ public class Restaurant {
 	@Id
 	@GeneratedValue(generator="increment")
 	@GenericGenerator(name="increment", strategy = "increment")
-	int id;
-	String name;
-	String description;
-	double deliverFee;
-	double averageRate;
-	String address;
-	java.sql.Date openTime;
-	java.sql.Date closeTime;
+	private int id;
+	private String name;
+	private String description;
+	private double deliverFee;
+	private String address;
+	private String openTime;
+	private String closeTime;
 	@Column(columnDefinition = "LONGBLOB")
-	byte[] photo;
+	private byte[] photo;
 	
 	@OneToMany
 	private Collection<Food> foods;
 	@OneToMany
-	private Collection<Order> orders;
+	private Collection<Orders> orders;
 	public int getId() {
 		return id;
 	}
@@ -52,24 +51,6 @@ public class Restaurant {
 	public void setDeliverFee(double deliverFee) {
 		this.deliverFee = deliverFee;
 	}
-	public double getAverageRate() {
-		return averageRate;
-	}
-	public void setAverageRate(double averageRate) {
-		this.averageRate = averageRate;
-	}
-	public java.sql.Date getOpenTime() {
-		return openTime;
-	}
-	public void setOpenTime(java.sql.Date openTime) {
-		this.openTime = openTime;
-	}
-	public java.sql.Date getCloseTime() {
-		return closeTime;
-	}
-	public void setCloseTime(java.sql.Date closeTime) {
-		this.closeTime = closeTime;
-	}
 	public byte[] getPhoto() {
 		return photo;
 	}
@@ -82,10 +63,10 @@ public class Restaurant {
 	public void setFoods(Collection<Food> foods) {
 		this.foods = foods;
 	}
-	public Collection<Order> getOrders() {
+	public Collection<Orders> getOrders() {
 		return orders;
 	}
-	public void setOrders(Collection<Order> orders) {
+	public void setOrders(Collection<Orders> orders) {
 		this.orders = orders;
 	}
 	public String getAddress() {
@@ -93,6 +74,18 @@ public class Restaurant {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public String getOpenTime() {
+		return openTime;
+	}
+	public void setOpenTime(String openTime) {
+		this.openTime = openTime;
+	}
+	public String getCloseTime() {
+		return closeTime;
+	}
+	public void setCloseTime(String closeTime) {
+		this.closeTime = closeTime;
 	}
 }
 	

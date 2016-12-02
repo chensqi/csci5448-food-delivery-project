@@ -5,18 +5,19 @@ import java.util.Collection;
 import javax.persistence.*;
 import net.fooddelivery.restaurant.models.*;
 @Entity
-public class Order {
+public class Orders {
 	@Id
 	private int id;
+	
 	private String destination;
 	private java.sql.Date time;
 	private int orderStatus;
 	
 	@OneToMany
 	private Collection<Food> foods;
-	@OneToOne @MapsId
-	private Customer customers;
-	@OneToOne @MapsId
+	@OneToOne
+	private Customer customer;
+	@OneToOne
 	private Restaurant restaurant;
 
 	public int getId() {
@@ -53,11 +54,11 @@ public class Order {
 	}
 
 	public Customer getCustomers() {
-		return customers;
+		return customer;
 	}
 
-	public void setCustomers(Customer customers) {
-		this.customers = customers;
+	public void setCustomers(Customer customer) {
+		this.customer = customer;
 	}
 
 	public Restaurant getRestaurant() {

@@ -10,7 +10,7 @@ public class Customer {
 	private String loginName;
 	private String password;
 	@OneToMany
-	private Collection<Order> orders;
+	private Collection<Orders> orders;
 	public int getId() {
 		return id;
 	}
@@ -35,10 +35,10 @@ public class Customer {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Collection<Order> getOrders() {
+	public Collection<Orders> getOrders() {
 		return orders;
 	}
-	public void setOrders(Collection<Order> orders) {
+	public void setOrders(Collection<Orders> orders) {
 		this.orders = orders;
 	}
 }
