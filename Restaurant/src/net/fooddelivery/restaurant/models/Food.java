@@ -10,18 +10,16 @@ public class Food {
 	@Id
 	@GeneratedValue(generator="increment")
 	@GenericGenerator(name="increment", strategy = "increment")
-	int id;
-	String name;
-	double price;
-	int calorie;
-	String description;
+	private int id;
+	private String name;
+	private double price;
+	private int calorie;
+	private String description;
 	@Column(columnDefinition = "LONGBLOB")
 	byte[] photo;
 	
 	@ManyToOne
 	private Restaurant restaurant;
-	@ManyToMany
-	private Collection<Order> orders;
 	
 	public int getId() {
 		return id;

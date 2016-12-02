@@ -28,11 +28,7 @@ public class Driver {
 	     e.printStackTrace();
         }
 		r.setPhoto(bFile);
-		Location l=new Location();
-		l.setLatitude(100);
-		l.setLongtitude(100);
-		l.setAddress("Boulder");
-		r.setLocation(l);
+		r.setAddress("Boulder");
 		Session session=Func.factory.openSession(); 
         Transaction tx =session.beginTransaction();
 		session.persist(r);

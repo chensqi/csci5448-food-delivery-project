@@ -14,7 +14,6 @@
         <mapping class="net.fooddelivery.restaurant.models.Food"/>
         <mapping class="net.fooddelivery.restaurant.models.Restaurant"/>
         <mapping class="net.fooddelivery.restaurant.models.Customer"/>
-        <mapping class="net.fooddelivery.restaurant.models.Location"/>
         <mapping class="net.fooddelivery.restaurant.models.Order"/>
         <mapping class="net.fooddelivery.restaurant.models.ResLog"/>
         

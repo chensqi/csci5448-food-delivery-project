@@ -12,6 +12,8 @@ import javax.swing.ImageIcon;
 
 import net.fooddelivery.restaurant.func.*;
 import net.fooddelivery.restaurant.models.*;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 public class MainWin {
 
 	private JFrame frame;
@@ -54,26 +56,43 @@ public class MainWin {
 		
 		JList list = new JList();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list.setBounds(82, 228, 204, 361);
+		list.setBounds(63, 245, 209, 361);
 		frame.getContentPane().add(list);
 		
 		JList list_1 = new JList();
 		list_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list_1.setBounds(729, 228, 204, 361);
+		list_1.setBounds(743, 267, 204, 361);
 		frame.getContentPane().add(list_1);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(437, 37, 209, 62);
-		frame.getContentPane().add(lblNewLabel);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(685, 140, 183, 36);
-		frame.getContentPane().add(textArea);
+		JLabel ResName = new JLabel("New label");
+		ResName.setHorizontalAlignment(SwingConstants.CENTER);
+		ResName.setFont(new Font("Gill Sans MT", Font.PLAIN, 40));
+		ResName.setBounds(394, 37, 209, 62);
+		frame.getContentPane().add(ResName);
+		ResName.setText(resman.res.getName());
 		
 		JLabel ResPhoto = new JLabel("New label");
-		ResPhoto.setBounds(766, 18, 100, 100);
+		ResPhoto.setBounds(63, 37, 150, 150);
 		frame.getContentPane().add(ResPhoto);
 		ImageIcon icon = new ImageIcon(resman.res.getPhoto());
 		ResPhoto.setIcon(icon);
+		
+		JLabel ResDes = new JLabel("New label");
+		ResDes.setFont(new Font("SimSun-ExtB", Font.PLAIN, 20));
+		ResDes.setBounds(766, 89, 204, 18);
+		frame.getContentPane().add(ResDes);
+		ResDes.setText(resman.res.getDescription());
+		
+		JLabel ResAdd = new JLabel("New label");
+		ResAdd.setFont(new Font("SimSun-ExtB", Font.PLAIN, 20));
+		ResAdd.setBounds(766, 137, 209, 18);
+		frame.getContentPane().add(ResAdd);
+		ResAdd.setText(resman.res.getAddress());
+		
+		JLabel ResTime = new JLabel("New label");
+		ResTime.setFont(new Font("SimSun-ExtB", Font.PLAIN, 20));
+		ResTime.setBounds(766, 186, 181, 18);
+		frame.getContentPane().add(ResTime);
+		ResTime.setText(resman.res.getOpenTime()+"-"+resman.res.getCloseTime());
 	}
 }

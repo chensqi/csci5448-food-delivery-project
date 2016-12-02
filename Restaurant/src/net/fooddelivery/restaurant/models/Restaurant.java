@@ -18,8 +18,7 @@ public class Restaurant {
 	String description;
 	double deliverFee;
 	double averageRate;
-	@Embedded
-	Location location;
+	String address;
 	java.sql.Date openTime;
 	java.sql.Date closeTime;
 	@Column(columnDefinition = "LONGBLOB")
@@ -27,7 +26,7 @@ public class Restaurant {
 	
 	@OneToMany
 	private Collection<Food> foods;
-	@ManyToMany
+	@OneToMany
 	private Collection<Order> orders;
 	public int getId() {
 		return id;
@@ -59,12 +58,6 @@ public class Restaurant {
 	public void setAverageRate(double averageRate) {
 		this.averageRate = averageRate;
 	}
-	public Location getLocation() {
-		return location;
-	}
-	public void setLocation(Location location) {
-		this.location = location;
-	}
 	public java.sql.Date getOpenTime() {
 		return openTime;
 	}
@@ -94,6 +87,12 @@ public class Restaurant {
 	}
 	public void setOrders(Collection<Order> orders) {
 		this.orders = orders;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 }
 	
