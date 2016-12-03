@@ -26,7 +26,7 @@ public class Restaurant {
 	@OneToMany
 	private Collection<Food> foods;
 	@OneToMany
-	private Collection<Orders> orders;
+	private Collection<Order> orders;
 	public int getId() {
 		return id;
 	}
@@ -63,10 +63,10 @@ public class Restaurant {
 	public void setFoods(Collection<Food> foods) {
 		this.foods = foods;
 	}
-	public Collection<Orders> getOrders() {
+	public Collection<Order> getOrders() {
 		return orders;
 	}
-	public void setOrders(Collection<Orders> orders) {
+	public void setOrders(Collection<Order> orders) {
 		this.orders = orders;
 	}
 	public String getAddress() {

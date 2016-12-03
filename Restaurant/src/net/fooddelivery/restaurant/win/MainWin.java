@@ -12,16 +12,22 @@ import javax.swing.ImageIcon;
 
 import net.fooddelivery.restaurant.func.*;
 import net.fooddelivery.restaurant.models.*;
+import net.fooddelivery.restaurant.win.*;
+import java.awt.Image;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JToggleButton;
+import javax.swing.JTabbedPane;
 public class MainWin {
 
 	private JFrame frame;
 	public static ResManagement resman;
 	public JLabel ResName,ResPhoto,ResAdd,ResDes,ResTime,DelFee;
+	public OrderPanel orderPanel;
+	public FoodPanel foodPanel;
 
 	/**
 	 * Launch the application.
@@ -55,48 +61,39 @@ public class MainWin {
 	private void initialize() {
 		resman.setMainwin(this);
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1024, 768);
+		frame.setBounds(100, 100, 1024, 900);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		JList list = new JList();
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list.setBounds(63, 299, 300, 361);
-		frame.getContentPane().add(list);
-		
-		JList list_1 = new JList();
-		list_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list_1.setBounds(650, 299, 300, 361);
-		frame.getContentPane().add(list_1);
 		
 		ResName = new JLabel("New label");
 		ResName.setHorizontalAlignment(SwingConstants.CENTER);
 		ResName.setFont(new Font("Gill Sans MT", Font.PLAIN, 40));
-		ResName.setBounds(374, 37, 209, 62);
+		ResName.setBounds(387, 13, 209, 62);
 		frame.getContentPane().add(ResName);
 		ResName.setText(resman.res.getName());
 		
 		ResPhoto = new JLabel("New label");
 		ResPhoto.setBounds(63, 37, 150, 150);
 		frame.getContentPane().add(ResPhoto);
-		ImageIcon icon = new ImageIcon(resman.res.getPhoto());
+		ImageIcon temp=new ImageIcon(resman.res.getPhoto());
+		ImageIcon icon = new ImageIcon(temp.getImage().getScaledInstance(ResPhoto.getWidth(), ResPhoto.getHeight(), Image.SCALE_DEFAULT));
 		ResPhoto.setIcon(icon);
 		
 		ResDes = new JLabel("New label");
-		ResDes.setFont(new Font("SimSun-ExtB", Font.PLAIN, 20));
-		ResDes.setBounds(719, 81, 204, 18);
+		ResDes.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
+		ResDes.setBounds(746, 81, 204, 18);
 		frame.getContentPane().add(ResDes);
 		ResDes.setText(resman.res.getDescription());
 		
 		ResAdd = new JLabel("New label");
-		ResAdd.setFont(new Font("SimSun-ExtB", Font.PLAIN, 20));
-		ResAdd.setBounds(719, 133, 209, 18);
+		ResAdd.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
+		ResAdd.setBounds(746, 126, 209, 18);
 		frame.getContentPane().add(ResAdd);
 		ResAdd.setText(resman.res.getAddress());
 		
 		ResTime = new JLabel("New label");
-		ResTime.setFont(new Font("SimSun-ExtB", Font.PLAIN, 20));
-		ResTime.setBounds(719, 221, 181, 18);
+		ResTime.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
+		ResTime.setBounds(746, 228, 181, 18);
 		frame.getContentPane().add(ResTime);
 		ResTime.setText(resman.res.getOpenTime()+"-"+resman.res.getCloseTime());
 		
@@ -111,14 +108,24 @@ public class MainWin {
 		
 		
 		DelFee = new JLabel("New label");
-		DelFee.setFont(new Font("SimSun-ExtB", Font.PLAIN, 20));
-		DelFee.setBounds(719, 180, 72, 18);
+		DelFee.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
+		DelFee.setBounds(746, 175, 72, 18);
 		frame.getContentPane().add(DelFee);
 		DelFee.setText(Double.toString(resman.res.getDeliverFee()));
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
+		tabbedPane.setBounds(73, 307, 877, 517);
+		frame.getContentPane().add(tabbedPane);
+		orderPanel=new OrderPanel(resman);
+		tabbedPane.addTab("Orders", orderPanel);
+		foodPanel=new FoodPanel(resman);
+		tabbedPane.addTab("Foods", foodPanel);
 	}
 	public void refresh(){
 		ResName.setText(resman.res.getName());
-		ImageIcon icon = new ImageIcon(resman.res.getPhoto());
+		ImageIcon temp=new ImageIcon(resman.res.getPhoto());
+		ImageIcon icon = new ImageIcon(temp.getImage().getScaledInstance(ResPhoto.getWidth(), ResPhoto.getHeight(), Image.SCALE_DEFAULT));
 		ResPhoto.setIcon(icon);
 		ResDes.setText(resman.res.getDescription());
 		ResAdd.setText(resman.res.getAddress());

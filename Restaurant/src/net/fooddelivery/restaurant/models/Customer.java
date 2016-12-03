@@ -2,15 +2,19 @@ package net.fooddelivery.restaurant.models;
 import java.util.Collection;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.GenericGenerator;
 @Entity
 public class Customer {
 	@Id
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment", strategy = "increment")
 	private int id;
 	private String name;
 	private String loginName;
 	private String password;
 	@OneToMany
-	private Collection<Orders> orders;
+	private Collection<Order> orders;
 	public int getId() {
 		return id;
 	}
@@ -35,10 +39,10 @@ public class Customer {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Collection<Orders> getOrders() {
+	public Collection<Order> getOrders() {
 		return orders;
 	}
-	public void setOrders(Collection<Orders> orders) {
+	public void setOrders(Collection<Order> orders) {
 		this.orders = orders;
 	}
 }

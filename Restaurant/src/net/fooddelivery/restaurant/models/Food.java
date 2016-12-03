@@ -57,5 +57,11 @@ public class Food {
 	public byte[] getPhoto(){
 		return photo;
 	}
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
 	
 }

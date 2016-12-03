@@ -1,7 +1,5 @@
 package net.fooddelivery.restaurant.win;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -31,7 +29,7 @@ public class UpdateResWin {
 	private JTextField Add;
 	private JTextField OT;
 	private JTextField CT;
-	private JTextField textField;
+	private JTextField Des;
 	private JTextField FileAdd;
 	byte[] bFile ;
 	private JTextField DelFee;
@@ -117,10 +115,10 @@ public class UpdateResWin {
 
 
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(227, 338, 355, 24);
-		frame.getContentPane().add(textField);
+		Des = new JTextField();
+		Des.setColumns(10);
+		Des.setBounds(227, 338, 355, 24);
+		frame.getContentPane().add(Des);
 		
 		JLabel lblPhoto = new JLabel("Photo:");
 		lblPhoto.setBounds(72, 115, 72, 18);
@@ -135,7 +133,8 @@ public class UpdateResWin {
 		JLabel Photo = new JLabel("New label");
 		Photo.setBounds(330, 91, 100, 100);
 		frame.getContentPane().add(Photo);
-		ImageIcon icon = new ImageIcon(resman.res.getPhoto());
+		ImageIcon temp=new ImageIcon(resman.res.getPhoto());
+		ImageIcon icon = new ImageIcon(temp.getImage().getScaledInstance(Photo.getWidth(), Photo.getHeight(), Image.SCALE_DEFAULT));
 		bFile=resman.res.getPhoto();
 		Photo.setIcon(icon);
 		
@@ -161,7 +160,8 @@ public class UpdateResWin {
 			           } catch (Exception err) {
 			   	     err.printStackTrace();
 			           }
-					ImageIcon icon = new ImageIcon(bFile);
+					ImageIcon temp=new ImageIcon(bFile);
+					ImageIcon icon = new ImageIcon(temp.getImage().getScaledInstance(Photo.getWidth(), Photo.getHeight(), Image.SCALE_DEFAULT));
 					Photo.setIcon(icon);
 			    }
 			}
@@ -190,6 +190,7 @@ public class UpdateResWin {
 				newres.setCloseTime(CT.getText());
 				newres.setPhoto(bFile);
 				newres.setDeliverFee(Double.parseDouble(DelFee.getText()));
+				newres.setDescription(Des.getText());
 				resman.UpdateRes(newres);
 				JOptionPane.showMessageDialog(null, "Information of Restaurant Updated Successfully!", "Success!", JOptionPane.INFORMATION_MESSAGE);
 				frame.dispose();

@@ -2,6 +2,8 @@ package net.fooddelivery.restaurant.models;
 import java.util.Collection;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table( name = "ResLog" )
 public class ResLog {
