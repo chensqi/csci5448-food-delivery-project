@@ -30,9 +30,9 @@ public class Order {
      )*/
 	@ManyToMany
 	private Collection<Food> foods;
-	@OneToOne
+	@ManyToOne
 	private Customer customer;
-	@OneToOne
+	@ManyToOne
 	private Restaurant restaurant;
 
 	public int getId() {
