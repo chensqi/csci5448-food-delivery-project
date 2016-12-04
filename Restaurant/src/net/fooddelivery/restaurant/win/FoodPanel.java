@@ -7,6 +7,8 @@ import net.fooddelivery.restaurant.models.*;
 import java.util.List;
 import java.util.Iterator;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.*;
@@ -31,17 +33,33 @@ public class FoodPanel extends JPanel {
 		            DuoClick(foodList.getSelectedValue());   //Event  
 		        }  
 		    }  
-		});  
+		});
+		JButton btnAdd=new JButton("Add Food");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AddClick();
+			}
+		});
+		this.add(btnAdd);
 		reload();
+	}
+	private void AddClick(){
+		Food food=new Food();
+		food.setRestaurant(resman.res);
+		//System.out.println(resman.res.getId());
+		FoodManagement foodman =new FoodManagement(food,this);
+		AddFoodWin win=new AddFoodWin(foodman);
+		win.show();
 	}
 	private void DuoClick(Object value){
 		Food f=(Food) value;
-		FoodManagement foodman =new FoodManagement(f);
+		FoodManagement foodman =new FoodManagement(f,this);
 		UpdateFoodWin win=new UpdateFoodWin(foodman);
 		win.show();
 		
 	}
 	public void reload(){
+		int index=foodList.getSelectedIndex();
 		List<Food> l=resman.fetchFoods();
 		Iterator<Food> it=l.iterator();
 		DefaultListModel<Food> lm=new DefaultListModel<>();
@@ -49,6 +67,7 @@ public class FoodPanel extends JPanel {
 			lm.addElement(it.next());
 		}
 		foodList.setModel(lm);
+		if(index>=0) foodList.setSelectedIndex(index);
 		//orderList.setSelectionBackground(back);
 
 	}

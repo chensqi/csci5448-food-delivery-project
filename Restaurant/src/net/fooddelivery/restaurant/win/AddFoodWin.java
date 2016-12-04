@@ -19,7 +19,7 @@ import java.io.FileInputStream;
 import javax.swing.UIManager;
 import net.fooddelivery.restaurant.func.*;
 import net.fooddelivery.restaurant.models.Food;
-public class UpdateFoodWin {
+public class AddFoodWin {
 
 	private JFrame frame;
 	private JTextField name,des,FileAdd;
@@ -35,7 +35,7 @@ public class UpdateFoodWin {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UpdateFoodWin window = new UpdateFoodWin(foodman);
+					AddFoodWin window = new AddFoodWin(foodman);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +47,7 @@ public class UpdateFoodWin {
 	/**
 	 * Create the application.
 	 */
-	public UpdateFoodWin(FoodManagement f) {
+	public AddFoodWin(FoodManagement f) {
 		foodman=f;
 		initialize();
 	}
@@ -59,7 +59,7 @@ public class UpdateFoodWin {
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
 		frame.setBounds(100, 100, 800, 600);
-		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Name: ");
@@ -71,7 +71,7 @@ public class UpdateFoodWin {
 		name.setBounds(217, 74, 232, 24);
 		frame.getContentPane().add(name);
 		name.setColumns(10);
-		name.setText(foodman.food.getName());
+		name.setText("Food Name");
 		
 		JLabel lblPhoto = new JLabel("Photo:");
 		lblPhoto.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
@@ -87,10 +87,10 @@ public class UpdateFoodWin {
 		JLabel Photo = new JLabel("New label");
 		Photo.setBounds(285, 115, 100, 100);
 		frame.getContentPane().add(Photo);
-		ImageIcon temp=new ImageIcon(foodman.food.getPhoto());
+		/*ImageIcon temp=new ImageIcon(foodman.food.getPhoto());
 		ImageIcon icon = new ImageIcon(temp.getImage().getScaledInstance(Photo.getWidth(), Photo.getHeight(), Image.SCALE_DEFAULT));
 		bFile=foodman.food.getPhoto();
-		Photo.setIcon(icon);
+		Photo.setIcon(icon);*/
 		
 		
 		btnChooseFile = new JButton("Choose File");
@@ -132,7 +132,7 @@ public class UpdateFoodWin {
 		des.setBounds(217, 290, 485, 24);
 		frame.getContentPane().add(des);
 		des.setColumns(10);
-		des.setText(foodman.food.getDescription());
+		des.setText("Description");
 		
 		JLabel lblPrice = new JLabel("Price:");
 		lblPrice.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
@@ -143,7 +143,7 @@ public class UpdateFoodWin {
 		price.setBounds(161, 383, 100, 24);
 		frame.getContentPane().add(price);
 		price.setColumns(10);
-		price.setText(new Double(foodman.food.getPrice()).toString());
+		price.setText("Price");
 		
 		JLabel lblCalorie = new JLabel("Calorie:");
 		lblCalorie.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
@@ -154,42 +154,25 @@ public class UpdateFoodWin {
 		calorie.setColumns(10);
 		calorie.setBounds(473, 383, 100, 24);
 		frame.getContentPane().add(calorie);
-		calorie.setText(new Integer(foodman.food.getCalorie()).toString());
+		calorie.setText("calorie");
 		
-		JButton btnUpdate = new JButton("Update");
-		btnUpdate.addActionListener(new ActionListener() {
+		JButton btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(btnUpdate.getText()=="Update"){
-					btnUpdate.setText("Confirm");
-					unlock();
-				}
-				else {
-					btnUpdate.setText("Update");
-					Food newf= new Food();
-					newf.setCalorie(Integer.valueOf(calorie.getText()));
-					newf.setDescription(des.getText());
-					newf.setName(name.getText());
-					newf.setPrice(Double.valueOf(price.getText()));
-					newf.setPhoto(bFile);
-					foodman.UpdateFood(newf);
-					lock();
-					frame.dispose();
-				}
-			}
-		});
-		btnUpdate.setBounds(415, 495, 113, 27);
-		frame.getContentPane().add(btnUpdate);
-		
-		JButton btnDelete = new JButton("Delete");
-		btnDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				foodman.DeleteFood();
+				Food newf= new Food();
+				newf.setCalorie(Integer.valueOf(calorie.getText()));
+				newf.setDescription(des.getText());
+				newf.setName(name.getText());
+				newf.setPrice(Double.valueOf(price.getText()));
+				newf.setPhoto(bFile);
+				foodman.AddFood(newf);
 				frame.dispose();
+
 			}
 		});
-		btnDelete.setBounds(569, 495, 113, 27);
-		frame.getContentPane().add(btnDelete);
-		lock();
+		btnAdd.setBounds(569, 495, 113, 27);
+		frame.getContentPane().add(btnAdd);
+		//lock();
 	}
 	private void lock(){
 		name.setEditable(false);
