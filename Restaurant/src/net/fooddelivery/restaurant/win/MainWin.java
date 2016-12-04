@@ -179,9 +179,7 @@ class orderRefersh extends Thread{
 	}
 	public void run() {
 		try {
-			while(true){
-				orderPanel.reload();
-				Thread.sleep(1000);
+			while(true){ 
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
