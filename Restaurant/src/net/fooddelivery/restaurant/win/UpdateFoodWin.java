@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -173,6 +174,7 @@ public class UpdateFoodWin {
 					newf.setPhoto(bFile);
 					foodman.UpdateFood(newf);
 					lock();
+					JOptionPane.showMessageDialog(null, "Information of Food Updated Successfully!", "Success!", JOptionPane.INFORMATION_MESSAGE);
 					frame.dispose();
 				}
 			}

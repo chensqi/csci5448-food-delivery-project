@@ -1,6 +1,9 @@
 package net.fooddelivery.restaurant.win;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import net.fooddelivery.restaurant.func.*;
 import net.fooddelivery.restaurant.win.*;
 import net.fooddelivery.restaurant.models.*;
@@ -17,6 +20,13 @@ public class OrderPanel extends JPanel {
 		OrderCell cell=new OrderCell();
 		orderList.setCellRenderer(cell);
 		orderList.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
+		orderList.addMouseListener(new MouseAdapter(){  
+		    public void mouseClicked(MouseEvent e){  
+		        if(e.getClickCount()==2){   //When double click JList  
+		            DuoClick(orderList.getSelectedValue());   //Event  
+		        }  
+		    }  
+		});
 		reload();
 		
 	}
@@ -28,5 +38,12 @@ public class OrderPanel extends JPanel {
 			lm.addElement(it.next());
 		}
 		orderList.setModel(lm);
+	}
+	private void DuoClick(Object value){
+		Order o=(Order) value;
+		OrderManagement oman=new OrderManagement(o,this);
+		UpdateOrderWin win=new UpdateOrderWin(oman);
+		win.show();
+		
 	}
 }

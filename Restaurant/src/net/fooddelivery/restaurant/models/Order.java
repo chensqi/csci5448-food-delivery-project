@@ -1,14 +1,19 @@
 package net.fooddelivery.restaurant.models;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+import org.hibernate.mapping.Bag;
 
 import net.fooddelivery.restaurant.models.*;
 @Entity
 @Table( name = "Orders" )
+@GenericGenerator(name="increment", strategy = "increment")
 public class Order {
 	@Id
 	@GeneratedValue(generator="increment")
@@ -28,8 +33,14 @@ public class Order {
 //      指定关联对象的外键,另一个表在中间表的外键名称。
       inverseJoinColumns={@JoinColumn(name="Food_Id")}
      )*/
-	@ManyToMany
-	private Collection<Food> foods;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="Orders_Food")
+    @CollectionId(
+        columns = @Column(name="ID"), 
+        generator="increment", 
+        type = @Type(type="int")
+    )
+	private List<Food> foods;
 	@ManyToOne
 	private Customer customer;
 	@ManyToOne
@@ -60,17 +71,7 @@ public class Order {
 		this.orderStatus = orderStatus;
 	}
 
-	public Collection<Food> getFoods() {
-		return foods;
-	}
 
-	public void setFoods(Collection<Food> foods) {
-		this.foods = foods;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
@@ -90,5 +91,17 @@ public class Order {
 
 	public void setDestination(String destination) {
 		this.destination = destination;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setFoods(List<Food> foods) {
+		this.foods = foods;
+	}
+
+	public List<Food> getFoods() {
+		return foods;
 	}
 }

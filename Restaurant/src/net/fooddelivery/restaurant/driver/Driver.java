@@ -103,6 +103,7 @@ public class Driver {
 		String hql = "FROM Restaurant r";
 		Query<Restaurant> query = session.createQuery(hql);
 		List<Restaurant> results = query.getResultList();
+
 		
 		Restaurant r=results.iterator().next();
 		
@@ -115,7 +116,7 @@ public class Driver {
 		hql = "FROM Food F";
 		Query<Food> query3 = session.createQuery(hql);
 		List<Food> results3 = query3.getResultList();
-		
+		results3.add(results3.iterator().next());
 		Food f=results3.iterator().next();
 		
 		Order o=new Order();
@@ -126,12 +127,13 @@ public class Driver {
 		o.setTime(new java.sql.Date(1000000));
 		Collection<Food> v=new Vector<Food>();
 		v.add(f);
-		o.setFoods(v);
+		o.setFoods(results3);
 		
 		//o.setTime();
 		
         Transaction tx =session.beginTransaction();
 		session.save(o);
+		//session.save(o);
 		tx.commit();
 		session.close();
 		
@@ -140,10 +142,10 @@ public class Driver {
 		Func.init();
 		LoginWin log=new LoginWin();
 		log.show();
-	    insertRes();
+	    /*insertRes();
 		insertResLog();
 		insertCustomer();
-		insertFood();
-		insertOrder();
+		insertFood();*/
+		//insertOrder();
 	}
 }

@@ -20,7 +20,7 @@ public class FoodCell  extends JLabel implements ListCellRenderer {
             boolean cellHasFocus) {
         Food f= (Food)value;
         setHorizontalAlignment(JLabel.LEFT);
-        String Text="<html><HTML><body><b>"+f.getName()+"</b><br/>"+" Description: "+f.getDescription()+"</b><br />Price: "+String.valueOf(f.getPrice())+" Calorie: "+String.valueOf(f.getCalorie())+"</body></html>";
+        String Text="<html><body><b>"+f.getName()+"</b><br/>"+" Description: "+f.getDescription()+"</b><br />Price: "+String.valueOf(f.getPrice())+" Calorie: "+String.valueOf(f.getCalorie())+"</body></html>";
         this.setText(Text);
 		ImageIcon temp=new ImageIcon(f.getPhoto());
 		ImageIcon icon = new ImageIcon(temp.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
