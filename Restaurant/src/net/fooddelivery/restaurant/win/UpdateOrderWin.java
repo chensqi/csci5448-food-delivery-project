@@ -4,7 +4,13 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+
 import java.awt.Font;
+import java.awt.GraphicsEnvironment;
+import java.awt.Point;
+
 import javax.swing.SwingConstants;
 
 import net.fooddelivery.restaurant.func.OrderManagement;
@@ -18,11 +24,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import javax.swing.UIManager;
 
 public class UpdateOrderWin {
 
-	private JFrame frame;
-	private JLabel name,time,address,detail,status;
+	private JFrame frmUpdateOrder;
+	private JLabel name,time,address,status;
+	private JTextArea detail;
 	private JButton btnDeliver,btnCancelOrder;
 	public OrderManagement oman;
 
@@ -34,7 +43,7 @@ public class UpdateOrderWin {
 			public void run() {
 				try {
 					UpdateOrderWin window = new UpdateOrderWin(oman);
-					window.frame.setVisible(true);
+					window.frmUpdateOrder.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -54,61 +63,66 @@ public class UpdateOrderWin {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 800, 600);
-		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmUpdateOrder = new JFrame();
+		frmUpdateOrder.setTitle("Update Order");
+		final int width=800;
+		final int height=600;
+		Point p = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
+	    frmUpdateOrder.setBounds(p.x - width / 2, p.y - height / 2, width, height); 
+		frmUpdateOrder.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		frmUpdateOrder.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Customer Name:");
 		lblNewLabel.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
 		lblNewLabel.setBounds(88, 47, 153, 18);
-		frame.getContentPane().add(lblNewLabel);
+		frmUpdateOrder.getContentPane().add(lblNewLabel);
 		
 		name = new JLabel("Customer Name:");
 		name.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
 		name.setBounds(342, 47, 153, 18);
-		frame.getContentPane().add(name);
+		frmUpdateOrder.getContentPane().add(name);
 		
 		JLabel lblOrderTime = new JLabel("Order Time:");
 		lblOrderTime.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
 		lblOrderTime.setBounds(88, 113, 153, 18);
-		frame.getContentPane().add(lblOrderTime);
+		frmUpdateOrder.getContentPane().add(lblOrderTime);
 		
 		time = new JLabel("Customer Name:");
 		time.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		time.setBounds(342, 113, 153, 18);
-		frame.getContentPane().add(time);
+		time.setBounds(342, 113, 300, 18);
+		frmUpdateOrder.getContentPane().add(time);
 		
 		JLabel lblAddress = new JLabel("Address:");
 		lblAddress.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
 		lblAddress.setBounds(88, 182, 153, 18);
-		frame.getContentPane().add(lblAddress);
+		frmUpdateOrder.getContentPane().add(lblAddress);
 		
 		JLabel lblOrderStatus = new JLabel("Order Status:");
 		lblOrderStatus.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
 		lblOrderStatus.setBounds(88, 255, 153, 18);
-		frame.getContentPane().add(lblOrderStatus);
+		frmUpdateOrder.getContentPane().add(lblOrderStatus);
 		
 		address = new JLabel("Customer Name:");
 		address.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		address.setBounds(342, 182, 153, 18);
-		frame.getContentPane().add(address);
+		address.setBounds(342, 182, 317, 18);
+		frmUpdateOrder.getContentPane().add(address);
 		
 		status = new JLabel("Customer Name:");
 		status.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
 		status.setBounds(342, 255, 153, 18);
-		frame.getContentPane().add(status);
+		frmUpdateOrder.getContentPane().add(status);
 		
 		JLabel lblOrderDetails = new JLabel("Order Details:");
 		lblOrderDetails.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		lblOrderDetails.setBounds(88, 325, 153, 18);
-		frame.getContentPane().add(lblOrderDetails);
+		lblOrderDetails.setBounds(88, 323, 153, 18);
+		frmUpdateOrder.getContentPane().add(lblOrderDetails);
 		
-		detail = new JLabel("Customer Name:");
-		detail.setHorizontalAlignment(SwingConstants.LEFT);
+		detail = new JTextArea("Customer Name:");
+		detail.setBackground(UIManager.getColor("Label.background"));
+		detail.setEditable(false);
 		detail.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		detail.setBounds(342, 310, 239, 151);
-		frame.getContentPane().add(detail);
+		detail.setBounds(342, 323, 239, 151);
+		frmUpdateOrder.getContentPane().add(detail);
 		
 		btnDeliver = new JButton("New button");
 		btnDeliver.addActionListener(new ActionListener() {
@@ -125,22 +139,32 @@ public class UpdateOrderWin {
 					oman.changeStatus(1);
 					break;
 				}
-				frame.dispose();
+				frmUpdateOrder.dispose();
 				//reload();
 			}
 		});
 		btnDeliver.setBounds(470, 491, 144, 27);
-		frame.getContentPane().add(btnDeliver);
+		frmUpdateOrder.getContentPane().add(btnDeliver);
 		
 		btnCancelOrder = new JButton("Cancel Order");
 		btnCancelOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				oman.changeStatus(4);
-				reload();
+		        int n = JOptionPane.showConfirmDialog(null,"Are you Sure to Cancel this Order?","Confirm Cancel", JOptionPane.YES_NO_OPTION);
+		        if(n==JOptionPane.YES_OPTION){			        
+					oman.changeStatus(4);
+					reload();
+					frmUpdateOrder.dispose();
+					JOptionPane.showMessageDialog(null, "The Order has been Cancelled.", "Success!", JOptionPane.INFORMATION_MESSAGE);
+
+		        }
+		        else if(n==JOptionPane.NO_OPTION){
+		        	
+		        }
+
 			}
 		});
 		btnCancelOrder.setBounds(624, 491, 144, 27);
-		frame.getContentPane().add(btnCancelOrder);
+		frmUpdateOrder.getContentPane().add(btnCancelOrder);
 		reload();
 	}
 	private void reload(){
@@ -191,11 +215,10 @@ public class UpdateOrderWin {
 			}
 			else mp.put(cur, mp.get(cur)+1);
 		}
-		String text="<html><body>";
+		String text="";
 		for (Entry<Food, Integer> entry : mp.entrySet()) {
-		    text+="<b>"+entry.getKey().getName()+"</b> "+" X"+entry.getValue().toString()+"<br>";
+		    text+=entry.getKey().getName()+" X"+entry.getValue().toString()+"\n";
 		}
-		text+="</body></html>";
 		detail.setText(text);
 		
 

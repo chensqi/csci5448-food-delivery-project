@@ -24,7 +24,7 @@ import java.io.FileOutputStream;
 public class UpdateResWin {
 	public static ResManagement resman;
 
-	private JFrame frame;
+	private JFrame frmUpdateRestaurantInformation;
 	private JTextField Name;
 	private JTextField Add;
 	private JTextField OT;
@@ -42,7 +42,7 @@ public class UpdateResWin {
 			public void run() {
 				try {
 					UpdateResWin window = new UpdateResWin(resman);
-					window.frame.setVisible(true);
+					window.frmUpdateRestaurantInformation.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -62,54 +62,58 @@ public class UpdateResWin {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 800, 600);
-		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmUpdateRestaurantInformation = new JFrame();
+		frmUpdateRestaurantInformation.setTitle("Update Restaurant Information");
+		final int width=800;
+		final int height=600;
+		Point p = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
+	    frmUpdateRestaurantInformation.setBounds(p.x - width / 2, p.y - height / 2, width, height); 
+		frmUpdateRestaurantInformation.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		frmUpdateRestaurantInformation.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Name:");
 		lblNewLabel.setBounds(72, 40, 72, 18);
-		frame.getContentPane().add(lblNewLabel);
+		frmUpdateRestaurantInformation.getContentPane().add(lblNewLabel);
 		
 		Name = new JTextField();
 		Name.setBounds(227, 37, 355, 24);
-		frame.getContentPane().add(Name);
+		frmUpdateRestaurantInformation.getContentPane().add(Name);
 		Name.setColumns(10);
 		Name.setText(resman.res.getName());
 		JLabel lblDescription = new JLabel("Description:");
 		lblDescription.setBounds(72, 341, 96, 18);
-		frame.getContentPane().add(lblDescription);
+		frmUpdateRestaurantInformation.getContentPane().add(lblDescription);
 		
 		JLabel lblNewLabel_1 = new JLabel("Address:");
 		lblNewLabel_1.setBounds(72, 405, 72, 18);
-		frame.getContentPane().add(lblNewLabel_1);
+		frmUpdateRestaurantInformation.getContentPane().add(lblNewLabel_1);
 		
 		Add = new JTextField();
 		Add.setColumns(10);
 		Add.setBounds(227, 402, 355, 24);
-		frame.getContentPane().add(Add);
+		frmUpdateRestaurantInformation.getContentPane().add(Add);
 		Add.setText(resman.res.getAddress());
 		
 		JLabel lblOpentime = new JLabel("OpenTime:");
 		lblOpentime.setBounds(72, 469, 72, 18);
-		frame.getContentPane().add(lblOpentime);
+		frmUpdateRestaurantInformation.getContentPane().add(lblOpentime);
 		
 		
 		OT = new JTextField();
 		OT.setBounds(227, 466, 126, 24);
-		frame.getContentPane().add(OT);
+		frmUpdateRestaurantInformation.getContentPane().add(OT);
 		OT.setColumns(10);
 		OT.setText(resman.res.getOpenTime());
 		
 		JLabel label = new JLabel("-");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setBounds(367, 469, 21, 18);
-		frame.getContentPane().add(label);
+		frmUpdateRestaurantInformation.getContentPane().add(label);
 		
 		CT = new JTextField();
 		CT.setColumns(10);
 		CT.setBounds(402, 466, 126, 24);
-		frame.getContentPane().add(CT);
+		frmUpdateRestaurantInformation.getContentPane().add(CT);
 		CT.setText(resman.res.getCloseTime());
 		
 
@@ -118,21 +122,21 @@ public class UpdateResWin {
 		Des = new JTextField();
 		Des.setColumns(10);
 		Des.setBounds(227, 338, 355, 24);
-		frame.getContentPane().add(Des);
+		frmUpdateRestaurantInformation.getContentPane().add(Des);
 		
 		JLabel lblPhoto = new JLabel("Photo:");
 		lblPhoto.setBounds(72, 115, 72, 18);
-		frame.getContentPane().add(lblPhoto);
+		frmUpdateRestaurantInformation.getContentPane().add(lblPhoto);
 		
 		FileAdd = new JTextField();
 		FileAdd.setText(" Choose a image file from disk");
 		FileAdd.setBounds(227, 228, 328, 24);
-		frame.getContentPane().add(FileAdd);
+		frmUpdateRestaurantInformation.getContentPane().add(FileAdd);
 		FileAdd.setColumns(10);
 		
 		JLabel Photo = new JLabel("New label");
 		Photo.setBounds(330, 91, 100, 100);
-		frame.getContentPane().add(Photo);
+		frmUpdateRestaurantInformation.getContentPane().add(Photo);
 		ImageIcon temp=new ImageIcon(resman.res.getPhoto());
 		ImageIcon icon = new ImageIcon(temp.getImage().getScaledInstance(Photo.getWidth(), Photo.getHeight(), Image.SCALE_DEFAULT));
 		bFile=resman.res.getPhoto();
@@ -146,7 +150,7 @@ public class UpdateResWin {
 			    FileNameExtensionFilter filter = new FileNameExtensionFilter(
 			        "JPEG", "jpg");
 			    chooser.setFileFilter(filter);
-			    int returnVal = chooser.showOpenDialog(frame);
+			    int returnVal = chooser.showOpenDialog(frmUpdateRestaurantInformation);
 			    if(returnVal == JFileChooser.APPROVE_OPTION) {
 			    	FileAdd.setText(chooser.getSelectedFile().getPath());
 
@@ -169,16 +173,16 @@ public class UpdateResWin {
 		
 		JLabel lblDeliverFee = new JLabel("Deliver Fee:");
 		lblDeliverFee.setBounds(72, 292, 96, 18);
-		frame.getContentPane().add(lblDeliverFee);
+		frmUpdateRestaurantInformation.getContentPane().add(lblDeliverFee);
 		
 		DelFee = new JTextField();
 		DelFee.setColumns(10);
 		DelFee.setBounds(227, 289, 178, 24);
-		frame.getContentPane().add(DelFee);
+		frmUpdateRestaurantInformation.getContentPane().add(DelFee);
 		DelFee.setText(Double.toString(resman.res.getDeliverFee()));
 		
 		btnChooseFile.setBounds(569, 227, 145, 27);
-		frame.getContentPane().add(btnChooseFile);
+		frmUpdateRestaurantInformation.getContentPane().add(btnChooseFile);
 		
 		JButton btnUpdate = new JButton("Update");
 		btnUpdate.addActionListener(new ActionListener() {
@@ -193,12 +197,12 @@ public class UpdateResWin {
 				newres.setDescription(Des.getText());
 				resman.UpdateRes(newres);
 				JOptionPane.showMessageDialog(null, "Information of Restaurant Updated Successfully!", "Success!", JOptionPane.INFORMATION_MESSAGE);
-				frame.dispose();
+				frmUpdateRestaurantInformation.dispose();
 				
 			}
 		});
 		btnUpdate.setBounds(596, 502, 113, 27);
-		frame.getContentPane().add(btnUpdate);
+		frmUpdateRestaurantInformation.getContentPane().add(btnUpdate);
 		
 
 		

@@ -20,7 +20,7 @@ public class OrderPanel extends JPanel {
 		orderList=new JList();
 		JScrollPane scr=new JScrollPane(orderList);
 		this.add(scr);
-		scr.setBounds(0, 0, 800, 465);
+		scr.setBounds(0, 0, 800, 470);
 		OrderCell cell=new OrderCell();
 		orderList.setCellRenderer(cell);
 		orderList.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));

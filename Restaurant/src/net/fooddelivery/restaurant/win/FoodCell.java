@@ -35,7 +35,7 @@ public class FoodCell  extends JLabel implements ListCellRenderer {
         	setForeground(list.getForeground());
         }
 
-        setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
+        setFont(new Font("Gill-Sans", Font.PLAIN, 18));
         setOpaque(true);
         return this;
     }
