@@ -157,6 +157,8 @@ public class MainWin {
 		lblOpenTime.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
 		lblOpenTime.setBounds(603, 250, 129, 18);
 		frmLogIn.getContentPane().add(lblOpenTime);
+		orderRefersh orderRe=new orderRefersh(orderPanel);
+		orderRe.start();
 	}
 	public void refresh(){
 		ResName.setText(resman.res.getName());
@@ -167,5 +169,22 @@ public class MainWin {
 		ResAdd.setText(resman.res.getAddress());
 		ResTime.setText(resman.res.getOpenTime()+"-"+resman.res.getCloseTime());
 		DelFee.setText(Double.toString(resman.res.getDeliverFee()));
+	}
+
+}
+class orderRefersh extends Thread{
+	private OrderPanel orderPanel;
+	public orderRefersh(OrderPanel op){
+		orderPanel=op;
+	}
+	public void run() {
+		try {
+			while(true){
+				orderPanel.reload();
+				Thread.sleep(1000);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

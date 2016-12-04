@@ -90,7 +90,7 @@ public class AddFoodWin {
 		frmAddFood.getContentPane().add(FileAdd);
 		FileAdd.setColumns(10);
 		
-		JLabel Photo = new JLabel("New label");
+		JLabel Photo = new JLabel("Food Photo");
 		Photo.setBounds(285, 115, 100, 100);
 		frmAddFood.getContentPane().add(Photo);
 		/*ImageIcon temp=new ImageIcon(foodman.food.getPhoto());
