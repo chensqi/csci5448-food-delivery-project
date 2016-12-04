@@ -18,12 +18,13 @@ public class FoodPanel extends JPanel {
 	public JList foodList;
 	public ResManagement resman;
 	public FoodPanel(ResManagement r){
+		this.setSize(800,500);
+		this.setLayout(null);
 		resman=r;
 		foodList=new JList();
-		foodList.setSize(800, 500);
 		JScrollPane scr=new JScrollPane(foodList);
 		this.add(scr);
-		scr.setSize(800,500);
+		scr.setBounds(0, 0, 800, 430);
 		FoodCell cell=new FoodCell();
 		foodList.setCellRenderer(cell);
 		foodList.setSelectedIndex(ListSelectionModel.SINGLE_SELECTION);
@@ -40,6 +41,7 @@ public class FoodPanel extends JPanel {
 				AddClick();
 			}
 		});
+		btnAdd.setBounds(695,435,100,30);
 		this.add(btnAdd);
 		reload();
 	}

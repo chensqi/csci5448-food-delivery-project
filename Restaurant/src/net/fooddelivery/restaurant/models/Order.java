@@ -21,7 +21,8 @@ public class Order {
 	private int id;
 	
 	private String destination;
-	private java.sql.Date time;
+	@Temporal(TemporalType.TIMESTAMP)
+	private java.util.Date time;
 	private int orderStatus;
 	
   /*  @ManyToMany(cascade=CascadeType.ALL)
@@ -55,13 +56,6 @@ public class Order {
 	}
 
 
-	public java.sql.Date getTime() {
-		return time;
-	}
-
-	public void setTime(java.sql.Date time) {
-		this.time = time;
-	}
 
 	public int getOrderStatus() {
 		return orderStatus;
@@ -103,5 +97,13 @@ public class Order {
 
 	public List<Food> getFoods() {
 		return foods;
+	}
+
+	public java.util.Date getTime() {
+		return time;
+	}
+
+	public void setTime(java.util.Date time) {
+		this.time = time;
 	}
 }

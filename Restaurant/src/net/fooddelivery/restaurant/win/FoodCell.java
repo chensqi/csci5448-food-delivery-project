@@ -2,6 +2,7 @@ package net.fooddelivery.restaurant.win;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
@@ -37,5 +38,10 @@ public class FoodCell  extends JLabel implements ListCellRenderer {
         setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
         setOpaque(true);
         return this;
+    }
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.setColor(Color.black);
+        g.drawLine(0, getHeight() - 1, getWidth(), getHeight() - 1);
     }
 }

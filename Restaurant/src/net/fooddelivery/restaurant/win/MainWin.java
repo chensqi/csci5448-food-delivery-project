@@ -93,7 +93,7 @@ public class MainWin {
 		
 		ResTime = new JLabel("New label");
 		ResTime.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		ResTime.setBounds(746, 228, 181, 18);
+		ResTime.setBounds(746, 226, 181, 18);
 		frame.getContentPane().add(ResTime);
 		ResTime.setText(resman.res.getOpenTime()+"-"+resman.res.getCloseTime());
 		
@@ -103,7 +103,7 @@ public class MainWin {
 				resman.OpenUpdateResWin();
 			}
 		});
-		btnUpdate.setBounds(848, 259, 113, 27);
+		btnUpdate.setBounds(848, 271, 113, 27);
 		frame.getContentPane().add(btnUpdate);
 		
 		
@@ -115,12 +115,34 @@ public class MainWin {
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		tabbedPane.setBounds(73, 307, 877, 517);
+		tabbedPane.setBounds(73, 307, 800, 500);
 		frame.getContentPane().add(tabbedPane);
 		orderPanel=new OrderPanel(resman);
+		orderPanel.setSize(800, 500);
 		tabbedPane.addTab("Orders", orderPanel);
 		foodPanel=new FoodPanel(resman);
+		foodPanel.setSize(800, 500);
 		tabbedPane.addTab("Foods", foodPanel);
+		
+		JLabel lblDescription = new JLabel("Description:");
+		lblDescription.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
+		lblDescription.setBounds(603, 83, 129, 18);
+		frame.getContentPane().add(lblDescription);
+		
+		JLabel lblAddress = new JLabel("Address:");
+		lblAddress.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
+		lblAddress.setBounds(603, 128, 129, 18);
+		frame.getContentPane().add(lblAddress);
+		
+		JLabel lblDeliverFee = new JLabel("Deliver Fee:");
+		lblDeliverFee.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
+		lblDeliverFee.setBounds(603, 177, 129, 18);
+		frame.getContentPane().add(lblDeliverFee);
+		
+		JLabel lblOpenTime = new JLabel("Open Time:");
+		lblOpenTime.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
+		lblOpenTime.setBounds(603, 228, 129, 18);
+		frame.getContentPane().add(lblOpenTime);
 	}
 	public void refresh(){
 		ResName.setText(resman.res.getName());

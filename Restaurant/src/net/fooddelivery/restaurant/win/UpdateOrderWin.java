@@ -125,7 +125,8 @@ public class UpdateOrderWin {
 					oman.changeStatus(1);
 					break;
 				}
-				reload();
+				frame.dispose();
+				//reload();
 			}
 		});
 		btnDeliver.setBounds(470, 491, 144, 27);
@@ -155,21 +156,25 @@ public class UpdateOrderWin {
 		case 1:
 			status.setText("Delivering");
 			btnDeliver.setText("Delivered");
+			btnCancelOrder.setEnabled(false);
 			break;
 		case 2:
 			status.setText("Delivered");
 			btnDeliver.setText("Delivered");
 			btnDeliver.setEnabled(false);
+			btnCancelOrder.setEnabled(false);
 			break;
 		case 3:
 			status.setText("Completed");
 			btnDeliver.setText("Delivered");
 			btnDeliver.setEnabled(false);
+			btnCancelOrder.setEnabled(false);
 			break;
 		case 4:
 			status.setText("Cancelled");
 			btnDeliver.setText("Delivered");
 			btnDeliver.setEnabled(false);
+			btnCancelOrder.setEnabled(false);
 			break;
 		default:
 			status.setText("Waiting");

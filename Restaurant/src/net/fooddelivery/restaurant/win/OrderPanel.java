@@ -14,9 +14,13 @@ public class OrderPanel extends JPanel {
 	public JList orderList;
 	public ResManagement resman;
 	public OrderPanel(ResManagement r){
+		this.setSize(800,500);
+		this.setLayout(null);
 		resman=r;
 		orderList=new JList();
-		this.add(new JScrollPane(orderList));
+		JScrollPane scr=new JScrollPane(orderList);
+		this.add(scr);
+		scr.setBounds(0, 0, 800, 465);
 		OrderCell cell=new OrderCell();
 		orderList.setCellRenderer(cell);
 		orderList.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
@@ -40,10 +44,11 @@ public class OrderPanel extends JPanel {
 		orderList.setModel(lm);
 	}
 	private void DuoClick(Object value){
+		int index=orderList.getSelectedIndex();
 		Order o=(Order) value;
 		OrderManagement oman=new OrderManagement(o,this);
 		UpdateOrderWin win=new UpdateOrderWin(oman);
 		win.show();
-		
+		if(index>=0) orderList.setSelectedIndex(index);
 	}
 }

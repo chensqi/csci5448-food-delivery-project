@@ -145,7 +145,7 @@ public class Driver {
 	    /*insertRes();
 		insertResLog();
 		insertCustomer();
-		insertFood();*/
-		//insertOrder();
+		insertFood();
+		insertOrder();*/
 	}
 }
