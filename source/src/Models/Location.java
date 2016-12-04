@@ -8,4 +8,16 @@ public class Location {
 	int id;
 	double longtitude, latitude;
 	String address;
+	
+	public Location() {
+		address = "empty";
+	}
+	
+	public Location(String address) {
+		this.address = new String(address);
+	}
+	@Override
+	public String toString() {
+		return address;
+	}
 }

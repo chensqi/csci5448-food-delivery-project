@@ -17,7 +17,8 @@ public class Restaurant {
 	String name;
 	String description;
 	double deliverFee;
-	double averageRate;
+	@Column(columnDefinition = "LONGBLOB")
+	byte[] photo;
 	@Embedded
 	Location location;
 	java.sql.Date openTime;
@@ -25,6 +26,66 @@ public class Restaurant {
 	
 	@OneToMany
 	private Collection<Food> foods;
-	@ManyToMany
+	@OneToMany
 	private Collection<Order> orders;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public double getDeliverFee() {
+		return deliverFee;
+	}
+	public void setDeliverFee(double deliverFee) {
+		this.deliverFee = deliverFee;
+	}
+	public byte[] getPhoto() {
+		return photo;
+	}
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
+	}
+	public Location getLocation() {
+		return location;
+	}
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+	public java.sql.Date getOpenTime() {
+		return openTime;
+	}
+	public void setOpenTime(java.sql.Date openTime) {
+		this.openTime = openTime;
+	}
+	public java.sql.Date getCloseTime() {
+		return closeTime;
+	}
+	public void setCloseTime(java.sql.Date closeTime) {
+		this.closeTime = closeTime;
+	}
+	public Collection<Food> getFoods() {
+		return foods;
+	}
+	public void setFoods(Collection<Food> foods) {
+		this.foods = foods;
+	}
+	public Collection<Order> getOrders() {
+		return orders;
+	}
+	public void setOrders(Collection<Order> orders) {
+		this.orders = orders;
+	}
 }
