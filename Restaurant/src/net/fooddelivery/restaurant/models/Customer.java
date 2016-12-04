@@ -13,6 +13,8 @@ public class Customer {
 	private String name;
 	private String loginName;
 	private String password;
+	private String phone;
+	private String address ;
 	@OneToMany
 	private Collection<Order> orders;
 	public int getId() {
@@ -44,5 +46,17 @@ public class Customer {
 	}
 	public void setOrders(Collection<Order> orders) {
 		this.orders = orders;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 }

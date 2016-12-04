@@ -17,6 +17,7 @@ import net.fooddelivery.restaurant.func.OrderManagement;
 import net.fooddelivery.restaurant.models.Food;
 import net.fooddelivery.restaurant.models.Order;
 
+import javax.net.ssl.HostnameVerifier;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -34,6 +35,8 @@ public class UpdateOrderWin {
 	private JTextArea detail;
 	private JButton btnDeliver,btnCancelOrder;
 	public OrderManagement oman;
+	private JLabel lblPhone;
+	private JLabel phone;
 
 	/**
 	 * Launch the application.
@@ -84,44 +87,44 @@ public class UpdateOrderWin {
 		
 		JLabel lblOrderTime = new JLabel("Order Time:");
 		lblOrderTime.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		lblOrderTime.setBounds(88, 113, 153, 18);
+		lblOrderTime.setBounds(88, 151, 153, 18);
 		frmUpdateOrder.getContentPane().add(lblOrderTime);
 		
 		time = new JLabel("Customer Name:");
 		time.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		time.setBounds(342, 113, 300, 18);
+		time.setBounds(342, 151, 300, 18);
 		frmUpdateOrder.getContentPane().add(time);
 		
 		JLabel lblAddress = new JLabel("Address:");
 		lblAddress.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		lblAddress.setBounds(88, 182, 153, 18);
+		lblAddress.setBounds(88, 205, 153, 18);
 		frmUpdateOrder.getContentPane().add(lblAddress);
 		
 		JLabel lblOrderStatus = new JLabel("Order Status:");
 		lblOrderStatus.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		lblOrderStatus.setBounds(88, 255, 153, 18);
+		lblOrderStatus.setBounds(88, 260, 153, 18);
 		frmUpdateOrder.getContentPane().add(lblOrderStatus);
 		
 		address = new JLabel("Customer Name:");
 		address.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		address.setBounds(342, 182, 317, 18);
+		address.setBounds(342, 205, 317, 18);
 		frmUpdateOrder.getContentPane().add(address);
 		
 		status = new JLabel("Customer Name:");
 		status.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		status.setBounds(342, 255, 153, 18);
+		status.setBounds(342, 260, 153, 18);
 		frmUpdateOrder.getContentPane().add(status);
 		
 		JLabel lblOrderDetails = new JLabel("Order Details:");
 		lblOrderDetails.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		lblOrderDetails.setBounds(88, 323, 153, 18);
+		lblOrderDetails.setBounds(88, 318, 153, 18);
 		frmUpdateOrder.getContentPane().add(lblOrderDetails);
 		
 		detail = new JTextArea("Customer Name:");
 		detail.setBackground(UIManager.getColor("Label.background"));
 		detail.setEditable(false);
 		detail.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		detail.setBounds(342, 323, 239, 151);
+		detail.setBounds(342, 307, 239, 151);
 		frmUpdateOrder.getContentPane().add(detail);
 		
 		btnDeliver = new JButton("New button");
@@ -165,12 +168,23 @@ public class UpdateOrderWin {
 		});
 		btnCancelOrder.setBounds(624, 491, 144, 27);
 		frmUpdateOrder.getContentPane().add(btnCancelOrder);
+		
+		lblPhone = new JLabel("Phone:");
+		lblPhone.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
+		lblPhone.setBounds(88, 99, 153, 18);
+		frmUpdateOrder.getContentPane().add(lblPhone);
+		
+		phone = new JLabel("Order Time:");
+		phone.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
+		phone.setBounds(342, 101, 153, 18);
+		frmUpdateOrder.getContentPane().add(phone);
 		reload();
 	}
 	private void reload(){
 		name.setText(oman.order.getCustomer().getName());
 		address.setText(oman.order.getDestination());
 		time.setText(oman.order.getTime().toString());
+		phone.setText(oman.order.getCustomer().getPhone());
 		int sta=oman.order.getOrderStatus();
 		switch (sta) {
 		case 0:
@@ -219,7 +233,7 @@ public class UpdateOrderWin {
 		for (Entry<Food, Integer> entry : mp.entrySet()) {
 		    text+=entry.getKey().getName()+" X"+entry.getValue().toString()+"\n";
 		}
-		detail.setText(text);
+		detail.setText("");
 		
 
 	}
