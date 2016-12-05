@@ -19,8 +19,8 @@ public class MysqlControll {
 	try{
 	String url = 
 	"jdbc:oracle:thin:@192.168.0.26:1521:tarena";
-	String usr = " ";
-	String pwd = " ";
+	String usr = "Yueming";
+	String pwd = "123456";
 	con = DriverManager.getConnection(
 	url,usr,pwd);
 	}catch(Exception e){

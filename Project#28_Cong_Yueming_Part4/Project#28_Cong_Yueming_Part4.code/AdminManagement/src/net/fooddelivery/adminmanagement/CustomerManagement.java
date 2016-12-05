@@ -16,7 +16,7 @@ public class CustomerManagement implements ActionListener{
 	String sql;
 	ResultSet rs;
 	StringBuffer sb = new StringBuffer();
-	JTextField jtf2 = new JTextField("Anthony",10);
+	JTextField jtf2 = new JTextField(10);
 	JTextField jtf3 = new JTextField(10);
 	JTextField jtf4 = new JTextField(10);
 	JTextField jtf7 = new JTextField(10);
@@ -33,10 +33,10 @@ public class CustomerManagement implements ActionListener{
 	} else if ("Add".equals(str)) {
 	//if check the button，then go to method of addEmp()
 	addEmp();
-	} else if ("Amend".equals(str)) {
+	} else if ("Ban".equals(str)) {
 	//if check the button, go to method of alterEmp()
 	alterEmp();
-	} else if ("Undo".equals(str)) {
+	} else if ("Amend".equals(str)) {
 	//if check the button, go to method of deleteEmp()
 	deleteEmp();
 	}
@@ -45,32 +45,30 @@ public class CustomerManagement implements ActionListener{
 	CustomerManagement() {
 	createGUI();
 	connectToDataBase();
-	// searchEmp();
-	// addEmp();
-	// deleteEmp();
+
 	alterEmp();
 	}
 	//connect to the database by using the method getConnection from the class of JdbcUtil.
-	//You can find the class of JdbcUtil at the button of this page.
+	//find the class of JdbcUtil at the button of this page.
 	public Connection connectToDataBase() {
 	con = MysqlControll.getConnection();
 	System.out.println(con);
 	return con;
 	}
 	public void searchEmp() {
-	jta10.setText("");
+	jta10.setText("");//customer info list
 	try {
 	stmt = con.createStatement();
-	// sql = "select * from Mstar where id=" + jtf3.getText();
-	// sql1="select * from sd100343 where ="+jtf3.getText();
+	// sql = "select * from Yueming where Password=" + jtf3.getText();
+	// sql1="select * from Yueming where LastName ="+jtf3.getText();
 	sql = "select * from Mstar where FirstName="
-	+ jtf2.getText().toLowerCase().trim() + "or id="
-	+ jtf3.getText().toLowerCase().trim() + "or SecondName="
-	+ jtf4.getText().toLowerCase().trim() + "or UNIT="
-	+ jtf5.getText().toLowerCase().trim() + "or TEAM="
-	+ jtf6.getText().toLowerCase().trim() + "or Phone="
-	+ jtf7.getText().toLowerCase().trim() + "or region="
-	+ jtf8.getText().toLowerCase().trim() + "or busStation="
+	+ jtf2.getText().toLowerCase().trim() + "or Password="
+	+ jtf3.getText().toLowerCase().trim() + "or LastName="
+	+ jtf4.getText().toLowerCase().trim() + "or PhoneNO.="
+	+ jtf5.getText().toLowerCase().trim() + "or Postcode="
+	+ jtf6.getText().toLowerCase().trim() + "or State="
+	+ jtf7.getText().toLowerCase().trim() + "or City="
+	+ jtf8.getText().toLowerCase().trim() + "or Adress="
 	+ jtf9.getText().toLowerCase().trim();
 	stmt.executeQuery(sql);
 	rs = stmt.getResultSet();
@@ -110,32 +108,32 @@ public class CustomerManagement implements ActionListener{
 	searchEmp();
 	try {
 	stmt = con.createStatement();
-	sql = "delete from Mstar where chineseName="
-	+ jtf2.getText().toLowerCase().trim() + "or id="
-	+ jtf3.getText().toLowerCase().trim() + "or engName="
-	+ jtf4.getText().toLowerCase().trim() + "or UNIT="
-	+ jtf5.getText().toLowerCase().trim() + "or TEAM="
-	+ jtf6.getText().toLowerCase().trim() + "or Phone="
-	+ jtf7.getText().toLowerCase().trim() + "or region="
-	+ jtf8.getText().toLowerCase().trim() + "or busStation="
+	sql = "delete from Mstar where FirstName="
+	+ jtf2.getText().toLowerCase().trim() + "or Password="
+	+ jtf3.getText().toLowerCase().trim() + "or LastName="
+	+ jtf4.getText().toLowerCase().trim() + "or PhoneNO.="
+	+ jtf5.getText().toLowerCase().trim() + "or Postcode="
+	+ jtf6.getText().toLowerCase().trim() + "or State="
+	+ jtf7.getText().toLowerCase().trim() + "or City="
+	+ jtf8.getText().toLowerCase().trim() + "or Adress="
 	+ jtf9.getText().toLowerCase().trim();
 	stmt.executeUpdate(sql);
 	int i = stmt.getUpdateCount();
-	jta10.setText("Successfully Undo" + i + "items");
+	jta10.setText("Successfully Ban" + i + "items");
 	} catch (SQLException e) {
 	e.printStackTrace();
 	}
 	}
 	public void alterEmp() {
 	searchEmp();
-	sql = "update Mstar set chineseName="
-	+ jtf2.getText().toLowerCase().trim() + "and id="
-	+ jtf3.getText().toLowerCase().trim() + "and engName="
-	+ jtf4.getText().toLowerCase().trim() + "and UNIT="
-	+ jtf5.getText().toLowerCase().trim() + "and TEAM="
-	+ jtf6.getText().toLowerCase().trim() + "and Phone="
-	+ jtf7.getText().toLowerCase().trim() + "and region="
-	+ jtf8.getText().toLowerCase().trim() + "and busStation="
+	sql = "update Mstar set FirstName="
+	+ jtf2.getText().toLowerCase().trim() + "and Password"
+	+ jtf3.getText().toLowerCase().trim() + "and LastName="
+	+ jtf4.getText().toLowerCase().trim() + "and PhoneNO.="
+	+ jtf5.getText().toLowerCase().trim() + "and Postcode="
+	+ jtf6.getText().toLowerCase().trim() + "and State="
+	+ jtf7.getText().toLowerCase().trim() + "and City="
+	+ jtf8.getText().toLowerCase().trim() + "and Adress="
 	+ jtf9.getText().toLowerCase().trim();
 	int i = 0;
 	try {
@@ -160,9 +158,9 @@ public class CustomerManagement implements ActionListener{
 	jp1.add(jb12);
 	jp00.add(jp1);
 	JPanel jp11 = new JPanel();
-	JButton jb111 = new JButton("Amend");
+	JButton jb111 = new JButton("Ban");
 	jb111.addActionListener(this);
-	JButton jb112 = new JButton("Undo");
+	JButton jb112 = new JButton("Amend");
 	jb112.addActionListener(this);
 	jp11.add(jb111);
 	jp11.add(jb112);
@@ -209,7 +207,7 @@ public class CustomerManagement implements ActionListener{
 	jp00.add(jp9);
 	jf.add(jp00);
 	JPanel jp01 = new JPanel();
-	jta10.setText("manual book");
+	jta10.setText("manualbook");
 	jp01.add(jta10);
 	jf.add(jp01);
 	jf.setSize(700, 500);
