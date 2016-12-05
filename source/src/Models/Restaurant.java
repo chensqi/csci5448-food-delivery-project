@@ -17,13 +17,12 @@ public class Restaurant {
 	String name;
 	String description;
 	double deliverFee;
-	@Column(columnDefinition = "LONGBLOB")
-	byte[] photo;
-	@Embedded
-	Location location;
+	String address;
 	java.sql.Date openTime;
 	java.sql.Date closeTime;
-	
+	@Column(columnDefinition = "LONGBLOB")
+	byte[] photo;
+
 	@OneToMany
 	private Collection<Food> foods;
 	@OneToMany
@@ -58,11 +57,12 @@ public class Restaurant {
 	public void setPhoto(byte[] photo) {
 		this.photo = photo;
 	}
-	public Location getLocation() {
-		return location;
+
+	public String getAddress() {
+		return address;
 	}
-	public void setLocation(Location location) {
-		this.location = location;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	public java.sql.Date getOpenTime() {
 		return openTime;

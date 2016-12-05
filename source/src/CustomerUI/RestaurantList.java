@@ -37,7 +37,7 @@ public class RestaurantList extends JList {
 			Restaurant r = (Restaurant) value;
 			this.setText( "<html><b><font size=\"6\">Restaurant name: " + r.getName() + "</font></b><br>"
 					+ "Description: " + r.getDescription() + "<br>"
-					+ "Location: " + r.getLocation() + "<br>"
+					+ "Location: " + r.getAddress() + "<br>"
 					+ "Delivery fee: $" + r.getDeliverFee() + " per order</html>");
 			ImageIcon temp=new ImageIcon(((Restaurant)value).getPhoto());
 			ImageIcon icon = new ImageIcon(temp.getImage().getScaledInstance(imageWidth, imageHeight, Image.SCALE_DEFAULT));

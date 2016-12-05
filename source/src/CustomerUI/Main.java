@@ -36,7 +36,7 @@ public class Main  {
         test1.setId(1);
         test1.setPhoto( bFile );
 		test1.setName("restaurant1");
-		test1.setLocation(new Location("AABB street"));
+		test1.setAddress(new String("AABB street"));
 		test1.setDescription("No description");
 		test1.setDeliverFee(3.5);
 		DBconnector.persist(test1);
@@ -45,7 +45,7 @@ public class Main  {
 		test2.setId(2);
 		test2.setPhoto( bFile );
 		test2.setName("restaurant2");
-		test2.setLocation(new Location("BBCC street"));
+		test2.setAddress(new String("BBCC street"));
 		test2.setDescription("No description too");
 		test2.setDeliverFee(1000);
 		DBconnector.persist(test2);
@@ -54,7 +54,7 @@ public class Main  {
 		test3.setId(3);
 		test3.setPhoto( bFile );
 		test3.setName("restaurant3");
-		test3.setLocation(new Location("AACC street"));
+		test3.setAddress(new String("AACC street"));
 		test3.setDescription("No description too, too");
 		test3.setDeliverFee(1000000);
 		DBconnector.persist(test3);

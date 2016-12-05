@@ -12,6 +12,9 @@ public class Customer {
 	String password;
 	String phone;
 	String address ;
+	@OneToMany
+	private Collection<Order> orders;
+
 	
 	public String getAddress() {
 		return address;
@@ -19,8 +22,6 @@ public class Customer {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	@OneToMany
-	private Collection<Order> orders;
 	public int getId() {
 		return id;
 	}

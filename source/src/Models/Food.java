@@ -15,6 +15,13 @@ public class Food {
 	String name;
 	double price;
 	int calorie;
+	private String description;
+	@Column(columnDefinition = "LONGBLOB")
+	byte[] photo;
+	
+	@ManyToOne
+	private Restaurant restaurant;
+
 	public byte[] getPhoto() {
 		return photo;
 	}
@@ -27,21 +34,6 @@ public class Food {
 	public void setRestaurant(Restaurant restaurant) {
 		this.restaurant = restaurant;
 	}
-	public Collection<Order> getOrders() {
-		return orders;
-	}
-	public void setOrders(Collection<Order> orders) {
-		this.orders = orders;
-	}
-	private String description;
-	@Column(columnDefinition = "LONGBLOB")
-	byte[] photo;
-	
-	@ManyToOne
-	private Restaurant restaurant;
-	@ManyToMany
-	private Collection<Order> orders;
-	
 	public int getId() {
 		return id;
 	}
