@@ -25,6 +25,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JToggleButton;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
+
+import javassist.tools.framedump;
 public class MainWin {
 
 	private JFrame frmLogIn;
@@ -70,44 +72,44 @@ public class MainWin {
 		final int width=1024;
 		final int height=900;
 		Point p = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
-	    frmLogIn.setBounds(p.x - width / 2, p.y - height / 2, width, height); 
+	    frmLogIn.setBounds(p.x - width / 2, p.y - height / 2, 885, 684); 
 		frmLogIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		frmLogIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmLogIn.getContentPane().setLayout(null);
 		
 		ResName = new JLabel("New label");
 		ResName.setHorizontalAlignment(SwingConstants.CENTER);
-		ResName.setFont(new Font("Gill Sans MT", Font.PLAIN, 40));
-		ResName.setBounds(387, 13, 209, 62);
+		ResName.setFont(new Font("Gill Sans MT", Font.PLAIN, 35));
+		ResName.setBounds(296, 13, 191, 49);
 		frmLogIn.getContentPane().add(ResName);
 		ResName.setText(resman.res.getName());
 		
 		ResPhoto = new JLabel("New label");
-		ResPhoto.setBounds(63, 37, 150, 150);
+		ResPhoto.setBounds(63, 37, 120, 120);
 		frmLogIn.getContentPane().add(ResPhoto);
 		ImageIcon temp=new ImageIcon(resman.res.getPhoto());
 		ImageIcon icon = new ImageIcon(temp.getImage().getScaledInstance(ResPhoto.getWidth(), ResPhoto.getHeight(), Image.SCALE_DEFAULT));
 		ResPhoto.setIcon(icon);
 		
 		ResDes = new JLabel("New label");
-		ResDes.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		ResDes.setBounds(746, 81, 204, 18);
+		ResDes.setFont(new Font("SimSun-ExtB", Font.PLAIN, 16));
+		ResDes.setBounds(621, 54, 204, 18);
 		frmLogIn.getContentPane().add(ResDes);
 		ResDes.setText(resman.res.getDescription());
 		
 		ResAdd = new JTextArea("New label");
 		ResAdd.setEditable(false);
 		ResAdd.setBackground(UIManager.getColor("Label.background"));
-		ResAdd.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		ResAdd.setBounds(746, 126, 246, 61);
+		ResAdd.setFont(new Font("SimSun-ExtB", Font.PLAIN, 16));
+		ResAdd.setBounds(621, 86, 246, 61);
 		frmLogIn.getContentPane().add(ResAdd);
 		ResAdd.setText(resman.res.getAddress());
 		ResAdd.setLineWrap(true);        //激活自动换行功能 
 		ResAdd.setWrapStyleWord(true); 
 		
 		ResTime = new JLabel("New label");
-		ResTime.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		ResTime.setBounds(746, 248, 181, 18);
+		ResTime.setFont(new Font("SimSun-ExtB", Font.PLAIN, 16));
+		ResTime.setBounds(621, 197, 181, 18);
 		frmLogIn.getContentPane().add(ResTime);
 		ResTime.setText(resman.res.getOpenTime()+"-"+resman.res.getCloseTime());
 		
@@ -117,46 +119,46 @@ public class MainWin {
 				resman.OpenUpdateResWin();
 			}
 		});
-		btnUpdate.setBounds(848, 293, 113, 27);
+		btnUpdate.setBounds(712, 244, 113, 27);
 		frmLogIn.getContentPane().add(btnUpdate);
 		
 		
 		DelFee = new JLabel("New label");
-		DelFee.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		DelFee.setBounds(746, 199, 72, 18);
+		DelFee.setFont(new Font("SimSun-ExtB", Font.PLAIN, 16));
+		DelFee.setBounds(621, 166, 72, 18);
 		frmLogIn.getContentPane().add(DelFee);
 		DelFee.setText(Double.toString(resman.res.getDeliverFee()));
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		tabbedPane.setBounds(73, 307, 800, 500);
+		tabbedPane.setFont(new Font("SimSun-ExtB", Font.PLAIN, 16));
+		tabbedPane.setBounds(63, 272, 739, 345);
 		frmLogIn.getContentPane().add(tabbedPane);
-		orderPanel=new OrderPanel(resman);
-		orderPanel.setSize(800, 500);
-		tabbedPane.addTab("Orders", orderPanel);
 		foodPanel=new FoodPanel(resman);
-		foodPanel.setSize(800, 500);
+		foodPanel.setSize(739, 320);
 		tabbedPane.addTab("Foods", foodPanel);
 		
 		JLabel lblDescription = new JLabel("Description:");
-		lblDescription.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		lblDescription.setBounds(603, 83, 129, 18);
+		lblDescription.setFont(new Font("SimSun-ExtB", Font.PLAIN, 16));
+		lblDescription.setBounds(478, 54, 129, 18);
 		frmLogIn.getContentPane().add(lblDescription);
 		
 		JLabel lblAddress = new JLabel("Address:");
-		lblAddress.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		lblAddress.setBounds(603, 128, 129, 18);
+		lblAddress.setFont(new Font("SimSun-ExtB", Font.PLAIN, 16));
+		lblAddress.setBounds(478, 87, 129, 18);
 		frmLogIn.getContentPane().add(lblAddress);
 		
 		JLabel lblDeliverFee = new JLabel("Deliver Fee:");
-		lblDeliverFee.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		lblDeliverFee.setBounds(603, 199, 129, 18);
+		lblDeliverFee.setFont(new Font("SimSun-ExtB", Font.PLAIN, 16));
+		lblDeliverFee.setBounds(478, 166, 129, 18);
 		frmLogIn.getContentPane().add(lblDeliverFee);
 		
 		JLabel lblOpenTime = new JLabel("Open Time:");
-		lblOpenTime.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));
-		lblOpenTime.setBounds(603, 250, 129, 18);
+		lblOpenTime.setFont(new Font("SimSun-ExtB", Font.PLAIN, 16));
+		lblOpenTime.setBounds(478, 199, 129, 18);
 		frmLogIn.getContentPane().add(lblOpenTime);
+		orderPanel=new OrderPanel(resman);
+		orderPanel.setSize(739, 320);
+		tabbedPane.addTab("Orders", orderPanel);
 		orderRefersh orderRe=new orderRefersh(orderPanel);
 		orderRe.start();
 	}

@@ -14,13 +14,13 @@ public class OrderPanel extends JPanel {
 	public JList orderList;
 	public ResManagement resman;
 	public OrderPanel(ResManagement r){
-		this.setSize(800,500);
+		this.setSize(739,320);
 		this.setLayout(null);
 		resman=r;
 		orderList=new JList();
 		JScrollPane scr=new JScrollPane(orderList);
 		this.add(scr);
-		scr.setBounds(0, 0, 800, 470);
+		scr.setBounds(0, 0, 735, 320);
 		OrderCell cell=new OrderCell();
 		orderList.setCellRenderer(cell);
 		orderList.setFont(new Font("SimSun-ExtB", Font.PLAIN, 18));

@@ -16,7 +16,7 @@ public class Func {
 	}
 	public static boolean login(String usn, char[] pwd){
 		Session session=factory.openSession(); 
-		String hql = "SELECT R.password FROM ResLog R WHERE R.username="+usn;
+		String hql = "SELECT R.password FROM ResLog R WHERE R.username="+"\'"+usn+"\'";
 		Query<String> query = session.createQuery(hql);
 		List<String> results = query.getResultList();
 		if(results.isEmpty()||!results.iterator().next().equals(new String(pwd))){
@@ -24,7 +24,7 @@ public class Func {
 			return false;
 		}
 		else{
-			hql="FROM Restaurant R WHERE R.id=(SELECT R.resId FROM ResLog R WHERE R.username="+usn+")";
+			hql="FROM Restaurant R WHERE R.id=(SELECT R.resId FROM ResLog R WHERE R.username="+"\'"+usn+"\'"+")";
 			List<Restaurant> res=session.createQuery(hql).getResultList();
 			MainWin.setManagement(res.iterator().next());
 			MainWin win=new MainWin();
